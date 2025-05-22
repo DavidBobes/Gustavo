@@ -31,22 +31,15 @@ namespace Proiect
             lblQuestion.Location = new Point((this.ClientSize.Width - lblQuestion.PreferredWidth) / 2, 30);
             this.Controls.Add(lblQuestion);
 
-            
             Button btnDineIn = new Button
             {
                 Size = new Size(250, 250),
                 Location = new Point(100, 100),
-                FlatStyle = FlatStyle.Flat
+                FlatStyle = FlatStyle.Flat,
+                BackgroundImage = Image.FromFile(Path.Combine("C:\\Users\\Davidd\\Downloads\\Casa-Self-Pay-Gustavo---Aplicatie-main\\Casa-Self-Pay-Gustavo---Aplicatie-main\\Resources", "restaurant.jpg")),
+                BackgroundImageLayout = ImageLayout.Stretch,
+                FlatAppearance = { BorderSize = 2, BorderColor = this.BackColor}
             };
-
-            PictureBox picDineIn = new PictureBox
-            {
-                Size = new Size(200, 200),
-                SizeMode = PictureBoxSizeMode.StretchImage,
-                ImageLocation = Path.Combine("C:\\Users\\Davidd\\Downloads\\Casa-Self-Pay-Gustavo---Aplicatie-main\\Casa-Self-Pay-Gustavo---Aplicatie-main\\Resources", "restaurant.jpg"),
-                Location = new Point(25, 25)
-            };
-            btnDineIn.Controls.Add(picDineIn);
 
             Label lblDineIn = new Label
             {
@@ -59,22 +52,15 @@ namespace Proiect
             this.Controls.Add(lblDineIn);
             this.Controls.Add(btnDineIn);
 
-            
             Button btnTakeOut = new Button
             {
                 Size = new Size(250, 250),
                 Location = new Point(450, 100),
-                FlatStyle = FlatStyle.Flat
+                FlatStyle = FlatStyle.Flat,
+                BackgroundImage = Image.FromFile(Path.Combine("C:\\Users\\Davidd\\Downloads\\Casa-Self-Pay-Gustavo---Aplicatie-main\\Casa-Self-Pay-Gustavo---Aplicatie-main\\Resources", "takeout.jpg")),
+                BackgroundImageLayout = ImageLayout.Stretch,
+                FlatAppearance = { BorderSize = 2, BorderColor = this.BackColor}
             };
-
-            PictureBox picTakeOut = new PictureBox
-            {
-                Size = new Size(200, 200),
-                SizeMode = PictureBoxSizeMode.StretchImage,
-                ImageLocation = Path.Combine("C:\\Users\\Davidd\\Downloads\\Casa-Self-Pay-Gustavo---Aplicatie-main\\Casa-Self-Pay-Gustavo---Aplicatie-main\\Resources", "takeout.jpg"), 
-                Location = new Point(25, 25)
-            };
-            btnTakeOut.Controls.Add(picTakeOut);
 
             Label lblTakeOut = new Label
             {
@@ -86,6 +72,23 @@ namespace Proiect
             lblTakeOut.Location = new Point(450 + (250 - lblTakeOut.PreferredWidth) / 2, 360);
             this.Controls.Add(lblTakeOut);
             this.Controls.Add(btnTakeOut);
+
+            // Add hover effects for both buttons
+            btnDineIn.MouseEnter += (s, e) => {
+                btnDineIn.FlatAppearance.BorderColor = Color.DodgerBlue;
+            };
+
+            btnDineIn.MouseLeave += (s, e) => {
+                btnDineIn.FlatAppearance.BorderColor = this.BackColor;
+            };
+
+            btnTakeOut.MouseEnter += (s, e) => {
+                btnTakeOut.FlatAppearance.BorderColor = Color.DodgerBlue;
+            };
+
+            btnTakeOut.MouseLeave += (s, e) => {
+                btnTakeOut.FlatAppearance.BorderColor = this.BackColor;
+            };
 
             btnDineIn.Click += (s, e) =>
             {
@@ -99,10 +102,9 @@ namespace Proiect
             {
                 this.Hide();
                 FormPlata formPlata = new FormPlata(listViewComanda, totalPlata.ToString());
-                formPlata.ShowDialog(); 
+                formPlata.ShowDialog();
                 this.Close();
             };
-
         }
     }
 }
